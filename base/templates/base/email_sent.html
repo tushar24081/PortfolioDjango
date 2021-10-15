@@ -1,0 +1,38 @@
+{% extends 'base/main.html' %}
+{% block content %}
+<style type="text/css">
+
+	html, body{
+		height: 100%;
+	}
+
+	#page-wrapper{
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		background-color: #eaeaea;
+	}
+
+	.text-wrapper{
+		max-width: 800px;
+		height: auto;
+		background-color: #fff;
+		border: 1px solid #888;
+		border-radius: 5px;
+		padding: 14px;
+	}
+	.text-wrapper p{
+		font-size: 14px;
+	}
+
+</style>
+<div id="page-wrapper">
+	<div class="text-wrapper content-block">
+	<h2>Email has been sent</h2>
+	<p>We'll try to reach to you in short time. Thank You!</p>
+	<a href="{% url 'home' %}" class="btn btn-success">Back to home</a>
+	</div>
+</div>
+{% endblock content %}

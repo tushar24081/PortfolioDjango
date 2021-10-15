@@ -1,0 +1,81 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+ <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<style type="text/css">
+	
+	body{
+		background-color: #fff;
+	}
+	
+	img{
+		max-width: 100%;
+		object-fit: cover;
+		align-items: center;
+		margin-top: 12px;
+	}
+	
+	#id_body{
+
+		margin: 10px;
+	}
+	#id_user{
+
+		margin: 10px;
+	}
+	button{
+		margin: 10px;
+	}
+	
+</style>
+
+<img src="{{posts.thumbnail.url}}">
+
+	<h1 style="margin-left: 18px">{{posts.headline}}</h1>
+
+	
+
+<h5 style="margin-left: 18px; margin-top: 20px">{{posts.sub_headline}}</h5>
+<div class="body-wrapper">
+
+<p style="margin-left: 30px; margin-top: 20px">{{posts.body|safe}}</p>
+
+
+
+<div class="ui grid">
+<div class="twelve wide column">
+	<div class="ui floating message">
+		<h2>Please say something about this post</h2>
+
+		<form action="" method="POST" class="ui form">
+			
+			{% csrf_token %}
+			<input type="hidden" name="post-id" value="{{posts.id}}">
+			{{c_form}}
+			<button type="submit" name="submit_c_form" class="btn btn-primary" style="margin-top: 12px; margin-bottom: 10px;">Send Comment</button>
+		</form>
+	</div>
+</div>
+</div>
+
+
+<h3>See what other people are telling about <b>{{posts.headline}}</b>:</h3>
+	{% if posts.comment_set.all %}
+			{% for c in posts.comment_set.all %}
+			<div class="ui error message">
+			  <div class="header">
+			    <b>{{c.user}}</b> says:
+			  </div>
+			  <ul class="list">
+			    <li>{{c.body}}</li>
+			    
+			  </ul>
+			  <p>{{c.created|timesince}} ago...</p>
+			</div>
+			{% endfor %}
+	{% endif %}
+
+
+
+{% endblock content %}

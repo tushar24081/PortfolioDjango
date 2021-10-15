@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Tushar Rupani</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
+	<link id="theme-style" rel="stylesheet" type="text/css" href="">
+	</head>
+<body>
+	<section class="s1">
+		<div class="main-container">
+			<div class="greeting-wrapper">
+			<h1>Hey, I'm Tushar Rupani.</h1>
+			</div>
+
+			<div class="info-wrapper">
+				
+				{% include 'base/navbar.html' %}
+				<div class="left-column">
+					<img src= "{% static 'images/tushar.jpg' %}" id="profile_pic">
+					<h5 style="text-align: center; line-height: 0;">Personalize Theme</h5>
+
+					<div class="theme-option-wrapper">
+						<div data-mode="light" class="theme-dot" id="light-mode"></div>
+						<div data-mode="blue" class="theme-dot" id="blue-mode"></div>
+						<div data-mode="green" class="theme-dot" id="green-mode"></div>
+						<div data-mode="purple" class="theme-dot" id="purple-mode"></div>
+				</div>
+				<p id="setting-note">Theme will be saved for <br>next visit</p>
+			</div>
+				<div class="right-column">
+					<div class="preview-shadow">
+						<div class="preview">
+							<div class="corner" id="corner-tl"></div>
+							<div class="corner" id="corner-tr"></div>
+							<h3>What I Do?</h3>
+							<p>Full Stack Developer, With Django and PostgreSql </p>
+							<div class="corner" id="corner-br"></div>
+							<div class="corner" id="corner-bl"></div>
+
+						</div>
+				</div>
+			</div>
+			</div>
+			
+		</div>
+	</section>
+	<section class="s2">
+		<div class="main-container">
+			<div class="about-wrapper">
+				<div class="about-me">
+					<h3>More About Me</h3>
+					<p>Love to code in python, and excited about the Web3.</p>
+
+					<p>Gold Medalist in the Bachelor degree, looking forward to learn new things in the corporate.</p>
+					<hr>
+				<h4>Top Expertise</h4>
+				<p>Full stack developer with the main focus on Django and React <a target="_blank" href="{% static 'Tushar-Resume.pdf' %}">Download Resume</a> </p>
+				<div id="skills">
+					<ul>
+						<li>Python</li>
+						<li>React</li>
+						<li>Django</li>
+						<li>Javascript</li>
+					</ul>
+
+					<ul>
+						<li>Heroku</li>
+						<li>Git</li>
+						<li>ASP.net</li>
+						<li>SQL & Postgres</li>
+					</ul>
+				</div>
+				</div>
+
+				<div class="social-links">
+					<img src="{% static 'images/tusharGithub.png' %}" class="social-img">
+					<h3>Check My Projects on GitHub and Drop Suggestions :) </h3>
+					<a target="_blank" href="https://github.com/tushar24081">Tushar Github Profile.</a>
+				</div>
+			</div>
+			
+
+		</div>
+	</section>
+	<section class="s1">
+		<div class="main-container">
+			<h4 style="text-align:center;">Education is most powerful weapon for changing world.</h4>
+				<div class="post-wrapper-2">
+				{% for tag in tags %}
+				<div>
+				<div class="post">
+					<a href="{% url 'tag_post' tag.name %}"><img class="thumbnail-2" src="{{tag.thumbnail.url}}"></a>
+					<div class="post-preview">
+						<h6 class="post-title-2">{{tag.name}}</h6>
+						
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+
+			</div>
+			
+		</div>
+	</section>
+	<section class="s2">
+		<div class="main-container">
+			<h4 style="text-align:center;">Some Of My Projects With Django and ASP.Net</h4>
+			<div class="post-wrapper">
+				{% for post in posts %}
+				<div>
+				<div class="post">
+					<img class="thumbnail" src="{{post.thumbnail.url}}">
+					<div class="post-preview">
+						<h6 class="post-title">{{post.headline}}</h6>
+						<p class="post-desc">{{post.sub_headline}}</p>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+
+			</div>
+			<center><a href="{% url 'posts' %}"><h6 style="text-align:center;">Load More</h6></a></center>
+		</div>
+	</section>
+	<section class="s1">
+		<div class="main-container">
+			<h4 style="text-align:center;">Get in touch.</h4>
+			<form class="contact-form" action="{% url 'send_email' %}" method="POST">
+				{% csrf_token %}
+				<a name="contact"></a>
+				<label>Name</label>
+				<input type="text" name="name" class="input-field">
+
+				<label>Subject</label>
+				<input type="text" name="subject" class="input-field">
+
+				<label>Email</label>
+				<input type="text" name="email" class="input-field">
+
+				<label>Message</label>
+				<textarea name="message" class="input-field"></textarea>
+
+				<input type="submit" value="Send" id="submit-btn">
+			</form>
+		</div>
+	</section>
+	<script type="text/javascript">
+		
+		var static = "{% static 'css' %}"
+
+	</script>
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
